@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 export type ImageType = {
   id: number;
@@ -37,16 +38,25 @@ const ImageCard: React.FC<IProps> = ({ image, searchTag, openFull }) => {
     searchTag(tag);
     // history.push(tag);
   };
+  console.log(image.webformatURL);
+
   return (
     <div className="flex flex-col justify-between max-w-sm rounded overflow-hidden shadow-lg mx-auto">
-      <input
+      <Image
+        className="object-cover w-full h-64"
+        src={image.webformatURL}
+        alt={image.tags}
+        width={image.imageWidth}
+        height={image.imageHeight}
+      />
+      {/* <input
         type="image"
         onClick={() => openFull(image.id)}
         onKeyDown={() => openFull(image.id)}
         className="object-cover w-full h-64"
         src={image.webformatURL}
         alt={image.tags}
-      />
+      /> */}
       <div className="px-6 py-4">
         <h2 className="font-bold text-purple-500 text-xl mb-2">Photo by {image.user}</h2>
         <ul>
