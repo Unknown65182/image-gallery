@@ -13,7 +13,9 @@ interface IProps {
 const ImageList: React.FC<IProps> = ({ tag }) => {
   const router = useRouter();
   const { data, error } = useSWR<{ hits: ImageType[] }>(
-    `https://pixabay.com/api/?key=${process.env.NEXT_PUBLIC_PIXABAY_API_KEY}&q=${tag}&image_type=photo&pretty=true`,
+    `https://pixabay.com/api/?key=${process.env.NEXT_PUBLIC_PIXABAY_API_KEY}&q=${
+      tag === 'all' ? '*' : tag
+    }&image_type=photo&pretty=true`,
     fetcher,
   );
 
